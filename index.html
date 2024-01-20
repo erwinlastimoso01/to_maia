@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MONTHSARY LETTER</title>
+</head>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
+
+    .letter {
+
+        background: url("./img/bg_letter.jpg");
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        min-height: 100vh;
+        width: 100%;
+        overflow-x: hidden;
+        position: absolute;
+    }
+
+    .letter .container {
+        padding: 30px 20px 80px 30px;
+    }
+
+    .letter .container .letter_overlay {
+        display: flex;
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        z-index: 99;
+    }
+
+    .letter .container .letter_overlay .heart_img {
+        position: absolute;
+        width: 100px;
+        top: 30%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 999;
+    }
+
+    .letter .container .letter_overlay .overlay_1 {
+        background-color: #fafafa;
+        width: 100%;
+        min-height: 100vh;
+        transition-duration: 1s;
+    }
+
+    .letter .container .letter_overlay .overlay_1.overlay_1_hide {
+        transform: translateX(-100%);
+    }
+
+    .letter .container .letter_overlay .overlay_2 {
+        background-color: #f0f0f0;
+        width: 100%;
+        min-height: 100vh;
+        transition-duration: 1s;
+    }
+
+    .letter .container .letter_overlay .overlay_2.overlay_2_hide {
+        transform: translateX(100%);
+    }
+
+    .message_container {
+        text-align: justify;
+    }
+
+    .letter .container .message {
+        font-size: 14px;
+        line-height: 2;
+        font-weight: 400;
+    }
+
+    .letter .container .to_img_container {
+        display: flex;
+        justify-content: center;
+    }
+
+    .letter .container .to_img {
+        width: 200px;
+        display: block;
+        animation: to_img_moving 3s ease-in-out infinite;
+    }
+
+    @keyframes to_img_moving {
+        0% {
+            transform: rotate(10deg);
+        }
+
+        50% {
+            transform: rotate(0);
+        }
+
+        100% {
+            transform: rotate(10deg);
+        }
+    }
+
+    .letter .container .feather_img {
+        position: absolute;
+        width: 200px;
+        height: auto;
+        animation: feather_img_moving 1s ease-in-out infinite;
+    }
+
+    @keyframes feather_img_moving {
+        0% {
+            transform: rotate(10deg);
+        }
+
+        50% {
+            transform: rotate(0);
+        }
+
+        100% {
+            transform: rotate(10deg);
+        }
+    }
+
+    .letter .container .letter_overlay .click_to_open_btn {
+        position: absolute;
+        border: none;
+        font-weight: 700;
+        background-color: #ff4d4d;
+        color: #fff;
+        padding: 15px;
+        border-radius: 5px;
+        bottom: 0;
+        left: 50%;
+        transform: translate(-50%, -30%);
+    }
+</style>
+
+<body>
+
+    <div class="letter">
+        <div class="container">
+            <div class="letter_overlay">
+                <img src="./img/heart_img.png" class="heart_img" alt="heart_img">
+                <div class="overlay_1"></div>
+                <div class="overlay_2"></div>
+                <button class="click_to_open_btn">Click to Open</button>
+            </div>
+            <div class="to_img_container">
+                <img src="./img/to_img.png" class="to_img" alt="to_img">
+            </div>
+            <div class="message_container">
+                <span class="message"></span>
+                <img src="./img/feather_img.png" class="feather_img" alt="feather_img">
+            </div>
+        </div>
+    </div>
+
+    <audio src="./audio/lv_0_20240120093312.mp3" id="bg_music"></audio>
+
+
+
+    <script>
+
+        var click_to_open_btn = document.querySelector(".click_to_open_btn");
+        var overlay_1 = document.querySelector(".overlay_1");
+        var overlay_2 = document.querySelector(".overlay_2");
+        var heart_img = document.querySelector(".heart_img");
+        var bg_music = document.querySelector("#bg_music");
+
+        click_to_open_btn.addEventListener("click", () => {
+            overlay_1.classList.toggle("overlay_1_hide");
+            overlay_2.classList.toggle("overlay_2_hide");
+            if (click_to_open_btn.textContent === "Click to Open") {
+                click_to_open_btn.textContent = "Click to Close";
+                heart_img.style.display = "none";
+                typing_text();
+                bg_music.play();
+            } else {
+                click_to_open_btn.textContent = "Click to Open"
+                heart_img.style.display = "block";
+                bg_music.pause();
+            }
+        });
+
+        /*click_to_open_btn.addEventListener("click", () => {
+            overlay_1.classList.toggle("overlay_1_hide");
+            overlay_2.classList.toggle("overlay_2_hide");
+            click_to_open_btn.style.display = "none"
+            heart_img.style.display = "none";
+            typing_text();
+        });*/
+
+
+        var i = 0;
+        var message =
+            `Happy 1st Monthsary, Love! First of all I just want to say thank you so much for coming to my life I don't expect this but I'm so
+        very lucky to have you thank you for everything. Thank you for caring always and loving me everyday even
+        sometime we fight, we argue, but we always choose to fix. Thank you for the patience and understanding
+        to
+        me. I
+        know my attitude is not always good sometime, but I swear to God and to you that i will never leave you
+        okay?
+        And
+        please if you ever have problems, don't hesitate to tell me, Don't keep it to your self. I'm always
+        willing to listen. Remember communication is the key. I don't care if I'm busy, I simply don't want you
+        to feel alone, because I know that feeling. I will always be at your side. And I just want you to know
+        my
+        love for you is pure, I'm very sure for you love, I'm sincerely consistency geuinly committed and
+        contented to you. ILYSM WITH MY PURE HEART AND SOUL ✨🤍✨, and wala akong balak ipagpalit ka sa iba
+        okay? Ikaw 'yung pinaka magandang dumating sa buhay ko na ayoko nang mawala pa, walang makahihigit ng
+        katangiang mayroon ka. Never kong makikita sa ibang tao 'yun, tandaan mo palagi na araw-araw kitang
+        pipiliin
+        at mamahalin kahit na sa panahong hindi na natin maintindihan yung isa't isa. Lahat ng mga memories
+        natin
+        ite-treasure ko 'yun Love. I hate waiting but if it's you, I'm willing to wait. I don't care how long it
+        will takes. Thank you for making me the happiest bf, love. I'm so happy every day and thankful, because
+        I
+        had the
+        most
+        amazing girlfriend. So very happy to have you always. I always here by your side okay? You're worth of a
+        billions girl, love. Kaya never kitang iiwan okay? Hinding hindi ko ipaparanas sa'yo 'yung trauma na
+        sinuffer mo. Kung p'wede lang i-absorb 'yung pain na naranasan mo to fix you, I will do that no doubt.
+        I will choose you through ups and down. And I really appreciate your efforts even it is small or
+        big.
+        Thank you so much! And I'm willing to listen to your rants and problems. I have a lot of time for you.
+        You're
+        always pretty in my eye. I LOVE YOU FOR THE REST OF MY LIFE!
+        ✨🤍✨ Just Please Take Care Your Self habang wala pa ako sa tabi mo. Also pray always to God ✨😇✨
+        HAPPY 1ST MONTHSARY ULET, LOVE 🤍🤍🤍. \n From: Erwin S. Lastimoso`;
+
+        function typing_text() {
+            if (i < message.length) {
+                document.querySelector(".message").textContent += message.charAt(i);
+                i++;
+                setTimeout(typing_text, 16);
+            }
+        }
+    </script>
+</body>
+
+</html>
